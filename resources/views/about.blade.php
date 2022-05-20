@@ -1,0 +1,5 @@
+@extends('app')
+@section('container')
+    <h1>halaman about</h1>
+@endsection
+
