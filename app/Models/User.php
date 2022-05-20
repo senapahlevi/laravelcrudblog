@@ -42,3 +42,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 }
+
+
+/*
+
+catatan pake php tinker orm jadi intinya orm ini buat memudahkan lagi
+buat crud udah ada dan dia ini bisa isi db tanpa sql gitu 
+cukup ketik di command php artisan tinker
+nah misal $user(bebas ini) = new User; (ngerujuk models\User.php)
+$user -> name ="sena" klik enter
+$user -> password = bcrypt('bebas') bebas then enter
+$user -> email = "bebas@gmail.com" enter
+$user -> save() enter kalo responnya true cek db sen!
+
+$user->all() showw all bisa juga findOrFail(2) ===> ini buat find(id bukan slug) kalo ga ada ya ada handling nya
+*/
