@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Models\Post;
 use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
  /*
@@ -26,52 +30,66 @@ Route::get('/about', function () {
         'title' => "Tentang"
     ]);
 });
-Route::get('/posts', function () {
-    $blog_post = [
-       [ "title" => "Kovid 1",
-        "slug" => "kovid-1",
-        "author" => "sena",
-        "body" => "kovid bahaya!!"],
+//versi route isi closure
 
-       [ "title" => "Eintracht frankfurt menang uel !!!",
-              "slug" => "eintracht-frankfurt-menang-uel",
+// Route::get('/posts', function () {
+//     // $blog_post = [
+//     //    [ "title" => "Kovid 1",
+//     //     "slug" => "kovid-1",
+//     //     "author" => "sena",
+//     //     "body" => "kovid bahaya!!"],
 
-        "author" => "sena",
-        "body" => "Klub kuda hitam"],
-    ];
-    return view('posts',[
-        "title" => "Posts",
-        "posts" => $blog_post,
-    ]);
-});
-Route::get('/posts/{slug}', function ($slug) {
+//     //    [ "title" => "Eintracht frankfurt menang uel !!!",
+//     //           "slug" => "eintracht-frankfurt-menang-uel",
 
-    $blog_post = [
-       [ "title" => "Kovid 1",
-        "slug" => "kovid-1",
-        "author" => "sena",
-        "body" => "kovid bahaya!!"],
+//     //     "author" => "sena",
+//     //     "body" => "Klub kuda hitam"],
+//     // ];
+//     return view('posts',[
+//         "title" => "Posts",
+//         // "posts" => $blog_post, //ini versi panggil dummy
+//         "posts" => Post::all(), //manggil dari model dan :: ini buat ngasih tau ini buat manggil
+//     ]);
+// });
+//versi bersih 
+Route::get('/posts', [PostController::class,'index']);//'index' itu method nya yak
 
-       [ "title" => "Eintracht frankfurt menang uel !!!",
-              "slug" => "eintracht-frankfurt-menang-uel",
 
-        "author" => "sena",
-        "body" => "Klub kuda hitam"],
-    ];
-    $new_post = [];
-    foreach($blog_post as $post){
-        if($post["slug"] === $slug){
-            $new_post = $post;
-        }
-    }
-    return view('post',[
-        "title" => "Single Post",
-        "post" => $new_post,
-    ]);
-});
+//versi route isi closure
 
-// Auth::routes();
+// Route::get('/posts/{slug}', function ($slug) {
 
+    // $blog_post = [
+    //    [ "title" => "Kovid 1",
+    //     "slug" => "kovid-1",
+    //     "author" => "sena",
+    //     "body" => "kovid bahaya!!"],
+
+    //    [ "title" => "Eintracht frankfurt menang uel !!!",
+    //           "slug" => "eintracht-frankfurt-menang-uel",
+
+    //     "author" => "sena",
+    //     "body" => "Klub kuda hitam"],
+    // ];
+    // $new_post = [];
+    // foreach($blog_post as $post){
+    //     if($post["slug"] === $slug){
+    //         $new_post = $post;
+    //     }
+    // }
+
+    // return view('post',[
+    //     "title" => "Single Post",
+
+    //     "post" => Post::find($slug), //ini versi panggil pake db 
+    //     "post" => $new_post, //ini versi panggil dummy
+    // ]);
+
+    //function(){sampe ];return view ini namanya closure ngapain perintah taro sini pisahin ke controller sen biar si route jadi}
+
+// });
+        //versi rapi routes aja dari controller wajib sih ini 
+Route::get('/posts/{slug}',[PostController::class,'show'] );//'show' itu method nya yak
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Auth::routes();
