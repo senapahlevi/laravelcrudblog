@@ -3,14 +3,25 @@ jadi
 di thinker ada cara lagi biar ga lama 
 php artisan tinker langsung copas aja
 Post::create([
-    'title' => 'Judul Ke satu',
-    'slug' => 'judul-ke-satu',
+    'title' => 'Borrusia Dortmund vs Realmadrid final UCL',
+    'category_id' => 4,
+    'slug' => 'BvB09',
     'excerpt' => 'ni contoh',
     'body' => 'ini body',
 ]);
+Category::create([
+    'name' => 'Design',
+    'slug' => 'Design',
+]);
 
+
+penghubung kateogri dan artikel post ya foreignkey gitu sen!
 //route model binding 
 ini bukan kayak goal.com/1 => ada artikel tentang haaland ke mancity
 tapi goal.com/haaland-pergi-ke-mancity => oh  ada
 
 {posts/:slug} where :qury nya slug
+
+konsep relational
+category    ==hasmany==>    post //1 cate bisa banhyak post
+            <==belongsto== //1 post bisa cuma 1 category

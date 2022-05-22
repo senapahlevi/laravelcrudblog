@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Models\Category;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -40,4 +41,18 @@ Route::get('/posts', [PostController::class,'index']);//'index' itu method nya y
 // Route::get('/posts/{slug}',[PostController::class,'show'] );//'show' itu method nya yak
 
 Route::get('/posts/{post:slug}',[PostController::class,'show'] );//harus sama ini update lagi coz /post itu function nya (Post $post) gitu 
+Route::get('categories',function(){
+    return view ('categories',[
+        'title' => 'Post Categorieszz',
+        'categories' => Category::all()
+    ]);
+});
+
+Route::get('/categories/{category:slug}', function(Category $category){
+    return view('category',[
+        'title' => $category->name, //misal programming namenya
+        'posts' => $category->posts, //->posts (ini sama dan ngambil method dari Category.php yakni posts())
+        'category' => $category->name,
+    ]); //kita tampilkan view category ini function isi nya namanya binding laravel
+});//harus sama ini update lagi coz /post itu function nya (Post $post) gitu 
   
