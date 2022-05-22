@@ -20,8 +20,19 @@ penghubung kateogri dan artikel post ya foreignkey gitu sen!
 ini bukan kayak goal.com/1 => ada artikel tentang haaland ke mancity
 tapi goal.com/haaland-pergi-ke-mancity => oh  ada
 
+
+{{-- tinker ketik $category = Category::first() then $category->posts kalo salah malah ada ketegori lain coba cek relasi dari Category.php apakahh hasmany atau belongsto / yg lain?
+    category->name itu outputnya name aja webprogramming bukan slug nya ye!! 
+    --}}
 {posts/:slug} where :qury nya slug
 
 konsep relational
 category    ==hasmany==>    post //1 cate bisa banhyak post
             <==belongsto== //1 post bisa cuma 1 category
+
+
+            //update gausah make tinker lagi ribet mending make seed 
+            jadi buka folder seeder/DatabaseSeeder then boom 
+
+            terus kalo mau update biar ga cape --seed
+            jadi php artisan migrate:fresh --seeder (biar input langsung si seed)

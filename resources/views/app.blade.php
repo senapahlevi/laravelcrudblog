@@ -84,7 +84,7 @@
                @yield('konten')  
             </div>
            
-            <h1>haloo ini appp</h1>
+         
         </main>
     </div>
 </body>

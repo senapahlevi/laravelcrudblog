@@ -7,9 +7,11 @@
    <h5>{{$post["author"]}}</h5>
    <p>{{$post["body"]}}</p> --}}
    <h2 class="mb-5">{{$post->title}}</h2>
-    <p>by :sena in <a href="/categories/{{$post->category->slug}}">
+    <p>by: <a href="#">{{$post->user->name}}</a> in 
+      <a href="/categories/{{$post->category->slug}}">
     {{$post->category->name}}
     </p>
+  </a>
    {{-- <h5>{{$post->author}}</h5> --}}
    {{-- <p>{{$post->body}}</p> --}}
    {{-- ini buat daleman nya pake <h1>,<p>,dkk html ini bisa nyesuain html nya  --}}

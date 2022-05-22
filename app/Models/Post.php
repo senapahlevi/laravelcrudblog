@@ -18,4 +18,8 @@ class Post extends Model
         //ngecek nya ke thinker ketik $post = Post::first(), type lagi $post->category 
         //cek kategori apa $post->category->name
     }
+    public function user (){
+        return $this -> belongsTo(User::class);
+    //baca nya 1 user cuma punya 1 post
+    }
 }
